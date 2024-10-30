@@ -17,4 +17,12 @@ public class ControladorDerrota : MonoBehaviour
             SceneManager.LoadScene(escenaDerrota);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Enemigo"))
+        {
+            EnemigoAlcanzoObjetivo();
+        }
+    }
 }

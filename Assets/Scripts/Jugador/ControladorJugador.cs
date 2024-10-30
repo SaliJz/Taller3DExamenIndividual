@@ -20,6 +20,11 @@ public class ControladorJugador : MonoBehaviour
 
     private string torreSeleccionada = ""; // Almacena el tipo de torre seleccionado
 
+    private void Start()
+    {
+        texto.gameObject.SetActive(false);
+    }
+
     void Update()
     {
         SeleccionarTorre(); // Detecta la selección de la torre con las teclas 1, 2, 3
@@ -111,6 +116,7 @@ public class ControladorJugador : MonoBehaviour
 
     private void MostrarMensaje(string mensaje)
     {
+        texto.gameObject.SetActive(true);
         texto.text = mensaje;
         StopAllCoroutines(); // Detiene cualquier corrutina anterior para reiniciar el temporizador
         StartCoroutine(TemporizadorMensaje(5f)); // Inicia el temporizador para limpiar el mensaje

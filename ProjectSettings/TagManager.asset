@@ -9,6 +9,8 @@ TagManager:
   - TorreAlmacenamiento
   - TorreAtaque
   - TorreDefensa
+  - Proyectil
+  - Enemigo
   layers:
   - Default
   - TransparentFX

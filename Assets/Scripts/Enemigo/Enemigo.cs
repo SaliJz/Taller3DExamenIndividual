@@ -12,11 +12,23 @@ public class Enemigo : MonoBehaviour
     private float tiempoUltimoAtaque;
     private Transform objetivoActual;
 
+    [SerializeField] private float velocidad = 10;
+    private Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Update()
     {
         if (objetivoActual == null || Vector3.Distance(transform.position, objetivoActual.position) > rangoAtaque)
         {
             BuscarObjetivo();
+        }
+        else
+        {
+            Mover();
         }
 
         if (objetivoActual != null)
@@ -24,6 +36,13 @@ public class Enemigo : MonoBehaviour
             AtacarObjetivo();
         }
     }
+
+    private void Mover()
+    {
+        Vector3 direccion = (objetivoActual.position - transform.position).normalized;
+        rb.velocity = direccion * velocidad;
+    }
+
 
     private void BuscarObjetivo()
     {

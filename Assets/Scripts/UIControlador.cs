@@ -50,10 +50,10 @@ public class UIControlador : MonoBehaviour
         if (jugador != null)
         {
             // Actualizar las barras de vida y resistencia
-            cantidadVida.text = $"{(float)vidaJugador.VidaActual()}";
+            cantidadVida.text = $"{(int)vidaJugador.VidaActual()}";
             barraVida.fillAmount = (float)vidaJugador.VidaActual() / vidaJugador.VidaMaxima();
 
-            cantidadResistencia.text = $"{jugador.ResistenciaActual()}";
+            cantidadResistencia.text = $"{(int)jugador.ResistenciaActual()}";
             barraResistencia.fillAmount = jugador.ResistenciaActual() / jugador.ResistenciaMaxima();
         }
 

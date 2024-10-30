@@ -6,8 +6,14 @@ public class TorreAtaque : TorreBase
 {
     [Header("Atributos de Ataque")]
     [SerializeField] private GameObject proyectilPrefab;
-    [SerializeField] private float frecuenciaDisparo = 1f; // Tiempo entre disparos
+    [SerializeField] private float frecuenciaDisparo = 1f;
     private float tiempoDesdeUltimoDisparo = 0f;
+
+    protected void Start()
+    {
+        costo = 20;
+        vida = 50;
+    }
 
     private void Update()
     {
@@ -27,7 +33,11 @@ public class TorreAtaque : TorreBase
             Transform enemigoObjetivo = enemigosEnRango[0].transform;
             GameObject proyectil = Instantiate(proyectilPrefab, transform.position, Quaternion.identity);
             proyectil.GetComponent<Proyectil>().ConfigurarObjetivo(enemigoObjetivo);
-            Debug.Log("Disparando a enemigo.");
         }
+    }
+
+    protected override void DestruirTorre()
+    {
+        base.DestruirTorre();
     }
 }

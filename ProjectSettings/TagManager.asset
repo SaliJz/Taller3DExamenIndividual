@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Suelo
+  - VidaBase
+  - TorreAlmacenamiento
+  - TorreAtaque
+  - TorreDefensa
   layers:
   - Default
   - TransparentFX

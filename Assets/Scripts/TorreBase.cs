@@ -5,13 +5,16 @@ using UnityEngine;
 public class TorreBase : MonoBehaviour
 {
     [Header("Atributos Comunes de la Torre")]
-    [SerializeField] protected int vida = 50;
+    [SerializeField] protected int vida;
     [SerializeField] protected float rango = 5f;
-    [SerializeField] protected int costo = 25;
+    [SerializeField] protected int costo;
 
-    public virtual void Start()
+    private VidaBase vidaBase;
+
+    private void Start()
     {
-
+        vidaBase = GameObject.FindWithTag("VidaBase").GetComponent<VidaBase>();
+        vida = vidaBase.VidaActual();
     }
 
     public virtual void RecibirDaño(int cantidad)

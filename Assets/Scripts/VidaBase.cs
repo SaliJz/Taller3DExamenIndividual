@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class VidaBase : MonoBehaviour
 {
-    [SerializeField] protected int vidaMaxima;
-    protected int vidaActual;
+    [SerializeField] protected int vidaMaxima = 100;
+    [SerializeField] protected int vidaActual;
 
     protected virtual void Start()
     {

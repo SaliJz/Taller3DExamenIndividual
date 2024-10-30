@@ -26,20 +26,20 @@ public class Proyectil : MonoBehaviour
 
         if (direccion.magnitude <= distanciaPorFrame)
         {
-            //ImpactarObjetivo();
+            ImpactarObjetivo();
             return;
         }
 
         transform.Translate(direccion.normalized * distanciaPorFrame, Space.World);
     }
 
-    //private void ImpactarObjetivo()
-    //{
-    //    VidaEnemigo vidaEnemigo = objetivo.GetComponent<VidaEnemigo>();
-    //    if (vidaEnemigo != null)
-    //    {
-    //        vidaEnemigo.RecibirDaño(daño);
-    //    }
-    //    Destroy(gameObject);
-    //}
+    private void ImpactarObjetivo()
+    {
+        VidaEnemigo vidaEnemigo = objetivo.GetComponent<VidaEnemigo>();
+        if (vidaEnemigo != null)
+        {
+            vidaEnemigo.RecibirDaño(daño);
+        }
+        Destroy(gameObject);
+    }
 }

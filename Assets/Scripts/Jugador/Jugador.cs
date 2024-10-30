@@ -5,17 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Jugador : MonoBehaviour
 {
-    [Header("Vida")]
-    [SerializeField] private int vidaMaxima = 100;
-    [SerializeField] private float tiempoParaRecuperacion = 10f;
-    private float tiempoSinRecibirDaño;
-    [SerializeField] private int vidaActual;
-
     [Header("Resistencia")]
     [SerializeField] private float resistenciaMaxima = 100f;
     [SerializeField] private float resistenciaActual;
-    [SerializeField] private float resistenciaRecuperacion = 10f; // Cuanta resistencia se recupera al no correr
-    [SerializeField] private float resistenciaCorrer = 10f; // Cuanta resistencia se consume al correr
+    [SerializeField] private float resistenciaRecuperacion = 10f;
+    [SerializeField] private float resistenciaCorrer = 10f;
 
     [Header("Movimiento")]
     [SerializeField] private float velocidadCaminar = 10f;
@@ -33,8 +27,6 @@ public class Jugador : MonoBehaviour
 
     void Awake()
     {
-        vidaActual = vidaMaxima;
-
         resistenciaActual = resistenciaMaxima;
         rb = GetComponent<Rigidbody>();
 
@@ -47,7 +39,6 @@ public class Jugador : MonoBehaviour
         Movimiento();
         Camara();
         RecuperarResistencia();
-        RecuperarVida();
         Saltar();
         Agachar();
     }
@@ -131,39 +122,6 @@ public class Jugador : MonoBehaviour
         {
             resistenciaActual = resistenciaMaxima;
         }
-    }
-
-    private void RecuperarVida()
-    {
-        tiempoSinRecibirDaño += Time.deltaTime;
-
-        if (tiempoSinRecibirDaño >= tiempoParaRecuperacion && vidaActual < vidaMaxima)
-        {
-            vidaActual += 1; // Regenera vida
-            tiempoSinRecibirDaño = 0;
-        }
-    }
-
-    public void RecibirDaño(int cantidad)
-    {
-        vidaActual -= cantidad;
-        if (vidaActual <= 0)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            SceneManager.LoadScene(escenaMuerte);
-            Destroy(gameObject);
-        }
-    }
-
-    public float VidaActual()
-    {
-        return vidaActual;
-    }
-
-    public float VidaMaxima()
-    {
-        return vidaMaxima;
     }
 
     public float ResistenciaActual()

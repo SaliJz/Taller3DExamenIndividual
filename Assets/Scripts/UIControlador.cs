@@ -16,6 +16,7 @@ public class UIControlador : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textoMonedas;
 
     private Jugador jugador;
+    private VidaJugador vidaJugador;
     private ControladorJugador controladorJugador;
 
     private void Awake()
@@ -35,6 +36,7 @@ public class UIControlador : MonoBehaviour
     {
         // Asignamos las referencias a los scripts de Jugador y ControladorJugador
         jugador = GameObject.FindWithTag("Player").GetComponent<Jugador>();
+        vidaJugador = GameObject.FindWithTag("Player").GetComponent<VidaJugador>();
         controladorJugador = GameObject.FindWithTag("Player").GetComponent<ControladorJugador>();
     }
 
@@ -48,8 +50,8 @@ public class UIControlador : MonoBehaviour
         if (jugador != null)
         {
             // Actualizar las barras de vida y resistencia
-            cantidadVida.text = $"{(float) jugador.VidaActual()}";
-            barraVida.fillAmount = (float)jugador.VidaActual() / jugador.VidaMaxima();
+            cantidadVida.text = $"{(float)vidaJugador.VidaActual()}";
+            barraVida.fillAmount = (float)vidaJugador.VidaActual() / vidaJugador.VidaMaxima();
 
             cantidadResistencia.text = $"{jugador.ResistenciaActual()}";
             barraResistencia.fillAmount = jugador.ResistenciaActual() / jugador.ResistenciaMaxima();

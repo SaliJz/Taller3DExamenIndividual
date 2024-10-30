@@ -7,15 +7,14 @@ public class TorreDefensa : TorreBase
     [Header("Atributos de Defensa")]
     [SerializeField] private int vidaExtra = 100;
 
-    //protected override void Start()
-    //{
-    //    vida += vidaExtra; // Aumenta la vida inicial
-    //    base.Start();
-    //}
+    protected void Start()
+    {
+        vida += vidaExtra; // Aumenta la vida inicial
+        costo = 10;
+    }
 
     protected override void DestruirTorre()
     {
-        Debug.Log("Torre de Defensa destruida.");
         base.DestruirTorre();
     }
 }

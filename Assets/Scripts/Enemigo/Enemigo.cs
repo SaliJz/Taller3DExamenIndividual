@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemigo : MonoBehaviour
 {
     [Header("Atributos del Enemigo")]
-    [SerializeField] private int vida = 50;
     [SerializeField] private int daño = 10;
     [SerializeField] private float rangoAtaque = 5f;
     [SerializeField] private float tiempoEntreAtaques = 1.5f;
@@ -61,30 +60,15 @@ public class Enemigo : MonoBehaviour
 
     private void AtacarObjetivo()
     {
-        //if (Time.time >= tiempoUltimoAtaque + tiempoEntreAtaques)
-        //{
-        //    VidaBase vidaObjetivo = objetivoActual.GetComponent<VidaBase>();
-        //    if (vidaObjetivo != null)
-        //    {
-        //        vidaObjetivo.RecibirDaño(daño);
-        //        tiempoUltimoAtaque = Time.time;
-        //    }
-        //}
-    }
-
-    public void RecibirDaño(int cantidad)
-    {
-        vida -= cantidad;
-        if (vida <= 0)
+        if (Time.time >= tiempoUltimoAtaque + tiempoEntreAtaques)
         {
-            Muerte();
+            VidaBase vidaObjetivo = objetivoActual.GetComponent<VidaBase>();
+            if (vidaObjetivo != null)
+            {
+                vidaObjetivo.RecibirDaño(daño);
+                tiempoUltimoAtaque = Time.time;
+            }
         }
-    }
-
-    private void Muerte()
-    {
-        Debug.Log("Enemigo destruido.");
-        Destroy(gameObject);
     }
 }
 
